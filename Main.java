@@ -1,7 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class TicTacToe {
+public class Main {
 
     public static void main(String[] args) {
         Scanner play= new Scanner(System.in);
