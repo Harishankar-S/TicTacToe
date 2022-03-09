@@ -53,7 +53,7 @@ public class TicTacToe {
             try {
                 while(checkWinnerPlus(gameBoardPlus) == false) {
                     int player = play.nextInt();
-                    moveMaker(gameBoardPlus, player, symbol, turn);
+                    moveMakerPlus(gameBoardPlus, player, symbol, turn);
                     turn++;
                 }}
             catch(InputMismatchException e) {
@@ -191,8 +191,8 @@ public class TicTacToe {
 
     }
 
-    public static void newBoardPlus(char[][] classicGameBoardPlus) {
-        for (char[] row : classicGameBoardPlus) {
+    public static void newBoardPlus(char[][] gameBoardPlus) {
+        for (char[] row : gameBoardPlus) {
             for(char c : row ) {
                 System.out.print(c);
             }
@@ -200,8 +200,8 @@ public class TicTacToe {
         }
     }
 
-    public static void moveMakerPlus(char[][] gameBoardPlus,int placement1, char symbol) {
-        int turn= 0;
+    public static void moveMakerPlus(char[][] gameBoardPlus,int placement1, char symbol, int turn) {
+        
         if(turn == 0|| turn == 2|| turn == 4||turn ==6||turn == 8|| turn == 10 || turn == 12 || turn == 14 || turn == 16) {
             symbol='X';
         }
