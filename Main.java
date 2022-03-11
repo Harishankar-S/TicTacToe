@@ -5,11 +5,18 @@ import java.util.Scanner;
 
 	    public static void main(String[] args) {
 	        Scanner play= new Scanner(System.in);
-	        System.out.println("Main Menu");
-	        System.out.println("TicTacToe Classic: Press 1 ");
-	        System.out.println("TicTacToe 4x4: press 2");
-	        System.out.println("To view replays, press 3");
-	        System.out.println("to change the theme press 4");
+	       System.out.println("¤==============++++==============¤\n"
+	        			    +  "|				 |\n"
+	        				+  "|            Main Menu        	 |\n"
+	        				+  "|				 |\n"
+	        				+  "|TicTacToe Classic: Press 1	 |\n"
+	        				+  "|                                |\n"
+	        				+  "|   TicTacToe 4x4: press 2       |\n"
+	        				+  "|                                |\n"
+	        				+  "|   To view replays, press 3     |\n"
+	        				+  "|                                |\n"
+	        				+  "|                                |\n"
+	        				+  "¤==============++++==============¤\n");
 	        int decision = play.nextInt();
 		 while(decision > 4|| decision <1) {
 	        	System.out.println("Please choose another option:");
