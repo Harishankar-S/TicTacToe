@@ -1,15 +1,18 @@
+import java.IO.Exception;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-	public class Midterm {
+	public class Main {
 
 	    public static void main(String[] args) {
 	        Scanner play= new Scanner(System.in);
+			final String FILEPATH = "Data\\";
+			
 	       System.out.println("¤==============++++==============¤\n"
 	        			    +  "|				 |\n"
 	        				+  "|            Main Menu        	 |\n"
 	        				+  "|				 |\n"
-	        				+  "|TicTacToe Classic: Press 1	 |\n"
+	        				+  "|   TicTacToe Classic: Press 1	 |\n"
 	        				+  "|                                |\n"
 	        				+  "|   TicTacToe 4x4: press 2       |\n"
 	        				+  "|                                |\n"
@@ -17,14 +20,14 @@ import java.util.Scanner;
 	        				+  "|                                |\n"
 	        				+  "|                                |\n"
 	        				+  "¤==============++++==============¤\n");
-	        int decision = play.nextInt();
+			int decision= Integer.parseInt(play.nextLine());;
 		 while(decision > 4|| decision <1) {
 	        	System.out.println("Please choose another option:");
 	        	System.out.println("TicTacToe Classic: Press 1 ");
 		        System.out.println("TicTacToe 4x4: press 2");
 		        System.out.println("To view replays, press 3");
 		        System.out.println("to change the theme press 4");
-		        decision= play.nextInt();
+		        decision= Integer.parseInt(play.nextLine());
 	        }
 	        if( decision == 1) {
 
@@ -39,20 +42,29 @@ import java.util.Scanner;
 	            int turn= 0;		
 	            char symbol = ' ';
 	            try {
-	                System.out.println("Please enter a number 1-9");
-	                while(checkWinner(classicGameBoard) ==false)	{	
-	                    int player= play.nextInt();
-	                    moveMaker(classicGameBoard,player, symbol, turn);
-	                    turn++;
-	                }}
-	            catch(IllegalArgumentException e){
-	                System.out.println("Number format was Invalid");
 
-	            }
+				int[] replayInputs = new int[9];
 
-	            catch(Exception e) {
-	                System.out.println("error occured");
-	            }
+				System.out.println("Please enter a number 1-9");
+				while(checkWinner(classicGameBoard) ==false)	{	
+					int player = Integer.parseInt(play.nextLine());
+					if (turn < 9) {replayInputs[turn] = player;}
+					moveMaker(classicGameBoard,player, symbol, turn);
+					turn++;
+				}
+				System.out.print("Enter a replay number: ");
+				int replayNumber = Integer.parseInt(play.nextLine());
+				Replay.saveReplay(FILEPATH + "replay-" + replayNumber + ".txt", replayInputs);
+			}
+			catch(IllegalArgumentException e){
+				System.out.println("Number format was Invalid");
+			}
+			catch (IOException e) {
+				System.out.println("IO Exception occurred.");
+			}
+			catch(Exception e) {
+				System.out.println("Error occured.");
+			}
 	        }
 	        else if (decision == 2){
 	            char [][] gameBoardPlus = {{' ', '|', ' ', '|', ' ', '|', ' '},
@@ -103,38 +115,65 @@ import java.util.Scanner;
 
 	        switch(placement) {
 	            case 1:
+	            	if(gameBoard[0][0] == 'X' | gameBoard[0][0] == 'O') {
+	            	turn = turn - 1; 
+	            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoard[0][0] = symbol;
 	                newBoard(gameBoard);
 	                break;
 	            case 2:
+	            	if(gameBoard[0][2] == 'X' | gameBoard[0][2] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoard[0][2] = symbol;
 	                newBoard(gameBoard);
 	                break;
 	            case 3:
+	            	if(gameBoard[0][4] == 'X' | gameBoard[0][4] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoard[0][4] = symbol;
 	                newBoard(gameBoard);
 	                break;
 	            case 4:
+	            	if(gameBoard[2][0] == 'X' | gameBoard[2][0] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoard[2][0] = symbol;
 	                newBoard(gameBoard);
 	                break;
 	            case 5:
+	            	if(gameBoard[2][2] == 'X' | gameBoard[2][2] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoard[2][2] = symbol;
 	                newBoard(gameBoard);
 	                break;
 	            case 6:
+	            	if(gameBoard[2][4] == 'X' | gameBoard[2][4] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoard[2][4] = symbol;
 	                newBoard(gameBoard);
 	                break;
 	            case 7:
+	            	if(gameBoard[4][0] == 'X' | gameBoard[4][0] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoard[4][0] = symbol;
 	                newBoard(gameBoard);
 	                break;
 	            case 8:
+	            	if(gameBoard[4][2] == 'X' | gameBoard[4][2] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoard[4][2] = symbol;
 	                newBoard(gameBoard);
 	                break;
 	            case 9:
+	            	if(gameBoard[4][4] == 'X' | gameBoard[4][4] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoard[4][4] = symbol;
 	                newBoard(gameBoard);
 	                break;
@@ -226,66 +265,114 @@ import java.util.Scanner;
 
 	        switch(placement1) {
 	            case 1:
+	            	if(gameBoardPlus[0][0] == 'X' | gameBoardPlus[0][0] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoardPlus[0][0] = symbol;
 	                newBoard(gameBoardPlus);
 	                break;
 	            case 2:
+	            	if(gameBoardPlus[0][2] == 'X' | gameBoardPlus[0][2] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoardPlus[0][2] = symbol;
 	                newBoard(gameBoardPlus);
 	                break;
 	            case 3:
+	            	if(gameBoardPlus[0][4] == 'X' | gameBoardPlus[0][4] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoardPlus[0][4] = symbol;
 	                newBoard(gameBoardPlus);
 	                break;
 	            case 4:
+	            	if(gameBoardPlus[0][6] == 'X' | gameBoardPlus[0][6] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoardPlus[0][6] = symbol;
 	                newBoard(gameBoardPlus);
 	                break;
 	            case 5:
+	            	if(gameBoardPlus[2][0] == 'X' | gameBoardPlus[2][0] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoardPlus[2][0] = symbol;
 	                newBoard(gameBoardPlus);
 	                break;
 	            case 6:
+	            	if(gameBoardPlus[2][2] == 'X' | gameBoardPlus[2][2] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoardPlus[2][2] = symbol;
 	                newBoard(gameBoardPlus);
 	                break;
 	            case 7:
+	            	if(gameBoardPlus[2][4] == 'X' | gameBoardPlus[2][4] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoardPlus[2][4] = symbol;
 	                newBoard(gameBoardPlus);
 	                break;
 	            case 8:
+	            	if(gameBoardPlus[2][6] == 'X' | gameBoardPlus[2][6] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoardPlus[2][6] = symbol;
 	                newBoard(gameBoardPlus);
 	                break;
 	            case 9:
+	            	if(gameBoardPlus[4][0] == 'X' | gameBoardPlus[4][0] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoardPlus[4][0] = symbol;
 	                newBoard(gameBoardPlus);
 	                break;
 	            case 10:
+	            	if(gameBoardPlus[4][2] == 'X' | gameBoardPlus[4][2] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoardPlus[4][2] = symbol;
 	                newBoard(gameBoardPlus);
 	                break;
 	            case 11:
+	            	if(gameBoardPlus[4][4] == 'X' | gameBoardPlus[4][4] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoardPlus[4][4] = symbol;
 	                newBoard(gameBoardPlus);
 	                break;
 	            case 12:
+	            	if(gameBoardPlus[4][6] == 'X' | gameBoardPlus[4][6] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoardPlus[4][6] = symbol;
 	                newBoard(gameBoardPlus);
 	                break;
 	            case 13:
+	            	if(gameBoardPlus[6][0] == 'X' | gameBoardPlus[6][0] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoardPlus[6][0] = symbol;
 	                newBoard(gameBoardPlus);
 	                break;
 	            case 14:
+	            	if(gameBoardPlus[6][2] == 'X' | gameBoardPlus[6][2] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoardPlus[6][2] = symbol;
 	                newBoard(gameBoardPlus);
 	                break;
 	            case 15:
+	            	if(gameBoardPlus[6][4] == 'X' | gameBoardPlus[6][4] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoardPlus[6][4] = symbol;
 	                newBoard(gameBoardPlus);
 	                break;
 	            case 16:
+	            	if(gameBoardPlus[6][6] == 'X' | gameBoardPlus[6][6] == 'O') {
+		            	turn = turn - 1; 
+		            	System.out.println("Sorry! that space was aleady taken");}
 	                gameBoardPlus[6][6] = symbol;
 	                newBoard(gameBoardPlus);
 	                break;
@@ -382,5 +469,4 @@ import java.util.Scanner;
 	    }
 
 	}
-
 
