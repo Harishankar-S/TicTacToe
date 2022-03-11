@@ -1,10 +1,8 @@
-package tictactoe;
-
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Main {
+public class Midterm {
 
 	public static void main(String[] args) {
 		Scanner play= new Scanner(System.in);
@@ -22,6 +20,7 @@ public class Main {
 						+  "|                                |\n"
 						+  "|                                |\n"
 						+  "¤==============++++==============¤\n");
+		
 		try {
 		int decision= Integer.parseInt(play.nextLine());
 		while(decision > 4|| decision <1) {
@@ -30,12 +29,7 @@ public class Main {
 			System.out.println("TicTacToe 4x4: press 2");
 			System.out.println("To view replays, press 3");
 			System.out.println("to change the theme press 4");
-			decision= Integer.parseInt(play.nextLine());
-		}}
-		catch(InputMismatchException e) {
-			System.out.println("Please enter an X or O");
-			System.exit(0);
-		}
+			decision= Integer.parseInt(play.nextLine()); }
 		
 		if( decision == 1) {
 
@@ -51,9 +45,8 @@ public class Main {
 			char symbol = ' ';
 			try {
 
-				int[] replayInputs = new int[9];
+				int[] replayInputs = new int[9]; }
 
-@@ -65,408 +67,420 @@ public static void main(String[] args) {
 			catch(Exception e) {
 				System.out.println("Error occured.");
 			}
@@ -93,6 +86,9 @@ else if (decision == 3) {
 
 }
 }
+	catch(InputMismatchException e) {
+		System.out.println("Please enter an X or an O");}}
+	
 
 public static void newBoard(char[][] classicGameBoard) {
 for (char[] row : classicGameBoard) {
@@ -121,7 +117,7 @@ switch(placement) {
 case 1:
 	if(gameBoard[0][0] == 'X' | gameBoard[0][0] == 'O') {
 		turn = turn - 1; 
-		System.out.println("Sorry! that space was aleady taken, dont try to cheat next time! please restart!");
+		System.out.println("Sorry! that space was aleady taken, dont try to cheat next time! please restart");
 		System.exit(0);}
 	gameBoard[0][0] = symbol;
 	newBoard(gameBoard);
@@ -280,8 +276,8 @@ switch(placement1) {
 case 1:
 	if(gameBoardPlus[0][0] == 'X' | gameBoardPlus[0][0] == 'O') {
 		turn = turn - 1; 
-		System.out.println("Sorry! that space was aleady taken, dont try to cheat next time! please restart!");
-		System.exit(0);}
+		System.out.println("Sorry! that space was aleady taken");
+		}
 	gameBoardPlus[0][0] = symbol;
 	newBoard(gameBoardPlus);
 	break;
@@ -493,5 +489,4 @@ if(gameBoardPlus[0][6]=='O' && gameBoardPlus[2][4]=='O' && gameBoardPlus[4][2]==
 else
 	return false;
 }
-
 }
