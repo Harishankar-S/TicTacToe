@@ -11,6 +11,14 @@ import java.util.Scanner;
 	        System.out.println("To view replays, press 3");
 	        System.out.println("to change the theme press 4");
 	        int decision = play.nextInt();
+		 while(decision > 4|| decision <1) {
+	        	System.out.println("Please choose another option:");
+	        	System.out.println("TicTacToe Classic: Press 1 ");
+		        System.out.println("TicTacToe 4x4: press 2");
+		        System.out.println("To view replays, press 3");
+		        System.out.println("to change the theme press 4");
+		        decision= play.nextInt();
+	        }
 	        if( decision == 1) {
 
 	            char [] [] classicGameBoard = {{' ', '|', ' ', '|', ' '},
